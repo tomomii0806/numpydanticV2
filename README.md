@@ -16,7 +16,7 @@ This assignment uses [uv](https://docs.astral.sh/uv/) for environment and depend
 uv sync --extra dev
 ```
 
-This creates a `.venv/`, installs the package editable, and pins everything via `uv.lock`. You can run any command in your env with `uv run <cmd>` (no activation needed).
+This creates a `.venv/`, installs the package, and pins everything via `uv.lock`. You can run any command in your env with `uv run <cmd>` (no activation needed).
 
 <details>
 <summary>Without uv</summary>
@@ -96,6 +96,8 @@ Benchmark on a 1M-element `float64` array (7.63 MB raw), 5 trials, run via `pyth
 | list (`round_trip=False`)  |          18.72 |      94.6 |      108.8 |
 | list (`round_trip=True`)   |          18.72 |      94.4 |      108.9 |
 | base64                     |          10.17 |      21.7 |       30.8 |
+
+> Note: this result was produced on a 2020 MacBook with Intel processor.
 
 For arrays of this size, `base64` is ~1.8× smaller, ~4× faster to dump, and ~3.5× faster to parse. `list` is preferred for small/config-like arrays where readability matters; switch to `base64` for arrays larger than ~10K elements or when you need exact float preservation.
 
